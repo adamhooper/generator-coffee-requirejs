@@ -35,17 +35,25 @@ Here are a few useful tasks that might help you get a hang for how to edit the r
 1. `bower install --save jquery underscore backbone` to download Backbone.
 1. `grunt bower` to add the path to `app/scripts/config.js`.
 1. Add `test/scripts/models/MyModelSpec.coffee` with something like this:
+
+    ```coffee
     define [ 'models/MyModel' ], (MyModel) ->
       describe 'MyModel', ->
         it 'should have a "foo" attribute', ->
           subject = new MyModel()
           expect(subject.get('foo')).to.equal('bar')
+    ```
+
 1. Run `grunt test` to see the failure
 1. Add `app/scripts/models/MyModel.coffee` with something like this:
+
+    ```coffee
     define [ 'backbone' ], (Backbone) ->
       class MyModel extends Backbone.Model
         defaults:
           foo: 'bar'
+    ```
+
 1. Run `grunt test` to see it pass
 
 Notes:
@@ -60,7 +68,9 @@ You can do it with [Squire.js](https://github.com/iammerrick/Squire.js/) like th
 
 1. `bower install jquery` to download jQuery.
 1. `grunt bower` to add the path to `app/scripts/config.js`.
-1. Add `test/scripts/wonkyUtilSpec.coffee` with something like this:
+1. Add `test/scripts/wonkyUtilSpec.coffee` with something like:
+
+    ```coffee
     define [ 'Squire' ], (Squire) ->
       describe 'wonkyUtil', ->
         mockJQuery =
@@ -74,11 +84,17 @@ You can do it with [Squire.js](https://github.com/iammerrick/Squire.js/) like th
               fn = () ->
               wonkyUtil.doSomething(fn)
               expect(mockjQuery.queue).to.have.been.calledWith(fn)
+    ```
+
 1. Run `grunt test` to see the failure
-1. Add `app/scripts/wonkyUtil.coffee` with something like this:
+1. Add `app/scripts/wonkyUtil.coffee` with something like:
+
+    ```coffee
     define [ 'jquery' ], ($) ->
       doSomething: (fn) ->
         $.queue(fn)
+    ```
+
 1. Run `grunt test` to see it pass
 
 ### To test continuously
